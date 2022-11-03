@@ -10,7 +10,6 @@ def ts_plotter(fluid: str, n_max=1000) -> tuple[list[float], list[float]]:
     """
     Return entropy and temperature of a given fluid in order to plot ts diagram
     """
-    print(fluid)
     t_min = PropsSI("TMIN", fluid)
     t_max = PropsSI("TCRIT", fluid)
     t_list = []
@@ -32,7 +31,6 @@ def ph_plotter(fluid: str, n_max=1000) -> tuple[list[float], list[float]]:
     """
     Return enthalpy and pressure of a given fluid in order to plot ph diagram
     """
-    print(fluid)
     p_min = PropsSI("PMIN", fluid)
     p_max = PropsSI("PCRIT", fluid)
     p_list = []
@@ -81,7 +79,13 @@ if PROPERTY_PAIR == "TS":
         height=400,
         width=300,
     )
-    p.varea(x=SLIST, y1=TLIST, y2=TLIST[0], color="orange", alpha=0.3)
+    p.varea(
+        x=SLIST,
+        y1=TLIST,
+        y2=TLIST[0],
+        color="orange",
+        alpha=0.3,
+    )
     p.line(SLIST, TLIST, line_width=2, color="orange")
 elif PROPERTY_PAIR == "PH":
     p = figure(
