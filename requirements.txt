@@ -1,2 +1,5 @@
 coolprop
 streamlit
+bokeh
+PIL
+
