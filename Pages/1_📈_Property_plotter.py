@@ -54,23 +54,27 @@ def ph_plotter(fluid: str, n_max=1000) -> tuple[list[float], list[float]]:
     return (h_list, p_list)
 
 
-st.write("# Property plotter")
-# Get the input parameters
-FLUID = st.selectbox(
-    "Select a fluid",
-    [
-        "Water",
-        "R134a",
-        "R410A",
-        "R22",
-        "R290",
-        "R600a",
-        "R744",
-    ],
-)
-PROPERTY_PAIR = st.radio("Select a property pair", ["TS", "PH"])
-SLIST, TLIST = ts_plotter(FLUID)
-HLIST, PLIST = ph_plotter(FLUID)
+with st.sidebar:
+    st.write("# Property plotter")
+    # Get the input parameters
+    col1, col2 = st.columns(2)
+    with col1:
+        FLUID = st.selectbox(
+            "Select a fluid",
+            [
+                "Water",
+                "R134a",
+                "R410A",
+                "R22",
+                "R290",
+                "R600a",
+                "R744",
+            ],
+        )
+    with col2:
+        PROPERTY_PAIR = st.radio("Select a property pair", ["TS", "PH"])
+    SLIST, TLIST = ts_plotter(FLUID)
+    HLIST, PLIST = ph_plotter(FLUID)
 if PROPERTY_PAIR == "TS":
     p = figure(
         title=f"TS diagram of {FLUID}",
